@@ -2,7 +2,7 @@
 ob_start();
 session_start(); // Starting Session
 
- include('includes/connect.php');?>
+ include('../includes/connect.php');?>
 <?php
 $error=''; // Variable To Store Error Message
 if (isset($_POST['submit'])) {
@@ -16,9 +16,10 @@ $username = stripslashes($username);
 $username = mysql_real_escape_string($username);
 // Selecting Database
 // SQL query to fetch information of registerd users and finds user match.
-$query = mysql_query("select * from registration where email='$username' AND status = 'Active'", $connection);
+$query = mysql_query("select * from super_admin where super_admin_email='$username' ", $connection);
 $rows = mysql_num_rows($query);
 $res_query = mysql_fetch_assoc($query);
+$usernameid = $res_query['username'];
 $password = $res_query['password'];
 if ($rows == 1) {
 
@@ -45,7 +46,8 @@ $message = "
     <span style='display:block;'>Please do not disclose to others . Keep posting your adds to get better results. Thanks Danaye team.</span>
     <a href='http://bestinciti.com/clients/danaye/login.php' style='text-decoration:none; color:#ffffff;'>
     <span style='background:#e31b23; padding:10px; border-radius:4px; display:block; color:#ffffff;'>    
-    $password
+    Username: <strong style='color:#fff;'>$usernameid</strong> Password: <strong style='color:#fff;'>$password</strong>
+	
     </span>
     </a>
     </div>
@@ -87,12 +89,12 @@ mysql_close($connection); // Closing Connection
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Danaye-Classified Directory Online</title>
-<link href="styles.css" rel="stylesheet" type="text/css" />
+<link href="../styles.css" rel="stylesheet" type="text/css" />
 <link href="font-awesome.min.css" rel="stylesheet" type="text/css"  />
 <!-- Start WOWSlider.com HEAD section -->
 <!-- add to the <head> of your page -->
-<link rel="stylesheet" type="text/css" href="slider/style.css" />
-<script type="text/javascript" src="slider/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="../slider/style.css" />
+<script type="text/javascript" src="../slider/jquery.js"></script>
 <!-- End WOWSlider.com HEAD section -->
 </head>
 <body>
@@ -138,14 +140,14 @@ if($_GET['notindb']=="true"){?>
 <div id="wowslider-container1">
   <div class="ws_images">
     <ul>
-      <li><img src="slider/images/1.jpg" alt="1" title="1" id="wows1_0"/></li>
-      <li><img src="slider/images/2.jpg" alt="2" title="2" id="wows1_1"/></li>
-      <li><img src="slider/images/3.jpg" alt="3" title="3" id="wows1_2"/></li>
+      <li><img src="../slider/images/1.jpg" alt="1" title="1" id="wows1_0"/></li>
+      <li><img src="../slider/images/2.jpg" alt="2" title="2" id="wows1_1"/></li>
+      <li><img src="../slider/images/3.jpg" alt="3" title="3" id="wows1_2"/></li>
     </ul>
   </div>
 </div>
-<script type="text/javascript" src="slider/wowslider.js"></script>
-<script type="text/javascript" src="slider/script.js"></script>
+<script type="text/javascript" src="../slider/wowslider.js"></script>
+<script type="text/javascript" src="../slider/script.js"></script>
 <!-- End WOWSlider.com BODY section -->
 </body>
 </html>

@@ -1,10 +1,9 @@
 <?php  ob_start();
 session_start();
-if($_SESSION['super_user']){ 
-	include('includes/connect.php'); 
-	
- 
-}
+	if($_SESSION['super_user']){
+	include('../includes/connect.php'); 
+
+	}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -24,7 +23,7 @@ ul {
 }
 #response {
 	padding:10px;
-	background-color: #ff1e77;
+	background-color: #008540;
 	border:2px solid #FFF;
 	color:#FFFFFF;
 	font-family:Arial, Helvetica, sans-serif;
@@ -51,7 +50,6 @@ a:active {
 	text-decoration: none;
 }
 </style>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){ 	
 	  function slideout(){
@@ -90,7 +88,7 @@ function delProfile(id){
 		cache: false,
 		success: function(html){
 				if(html){		
-					alert('Pages deleted successfully.');
+					alert('Profile deleted successfully.');
 					window.location.reload();
 				}
 			}
@@ -105,21 +103,21 @@ function delProfile(id){
 <?php include('includes/header.php');?>
 <!-- Ends here -->
 
+<!-- Content Starts Here -->
 
-
+<!-- Form Starts Here -->
+<br/>
+<br/><br/>
 <div id="container">
   <div id="list">
 
     <div id="response"> </div>
      <div class="formdivmn" style="background:#F7F7F7; border-radius:8px; padding:20px;">
         <div class="detailspagetxtblk">
-        <div class="container">
-
-<div class="wrapperDiv">
    <table width="100%" border="0" cellspacing="1" cellpadding="8"  class="bodytext">
     <tr>
       
-    <td width="50%" height="25" align="left" valign="middle" bgcolor="#DBDBDB"> <span style="float:Left; font-size:16px;">S.No </span>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<span style="font-size:16px;">Pages<span style="float:right; font-size:16px;">Edit</span>&nbsp; <span style="float:right; font-size:16px;">Delete</span></span></td>
+    <td width="50%" height="25" align="left" valign="middle" bgcolor="#DBDBDB"> <span style="float:Left; font-size:16px;">S.No </span>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  <span style="font-size:16px;">Service<span style="float:right; font-size:16px;">Edit<span>&nbsp;  &nbsp; <span style="float:right; font-size:16px;">Delete<span></span></span></span></span></span></td>
       
       
     </tr>
@@ -132,7 +130,7 @@ function delProfile(id){
               
     $page_id=$_GET['page_id'];
                 include("../includes/connect.php");
-				$query  = "SELECT page_id, page_title FROM pages ORDER BY itemorder ASC";
+				$query  = "SELECT page_id,page_title FROM pages ORDER BY itemorder ASC";
 				$result = mysql_query($query);
 				$i=1;
 				while($row = mysql_fetch_assoc($result))
@@ -141,9 +139,9 @@ function delProfile(id){
 				$page_id = stripslashes($row['page_id']);
 				$page_title = stripslashes($row['page_title']);
 					
-				?>   <li id="arrayorder_<?php echo $page_id; ?>">
+				?>   <li id="arrayorder_<?php echo $page_id ?>">
      <?php echo $i;?> &nbsp;&nbsp; &nbsp; &nbsp;  <?php  echo  $page_title; ?>
-       <span style="float:right;color:#FFFFFF;"><a href="cms_edit_page.php?edit_id=<?php echo $row['page_id'];?>"><img src="images/edit.png" width="20" height="22" /></a><span>&nbsp;  &nbsp; <span style="float:right;"><a href="javascript:void(0);" onclick="delProfile(<?php echo $row['page_id'];?>);"><img src="images/delete-icn.png" width="22" height="22" /></a><span> <div class="clear"></div><?php $i++; } ?></ul> </td>
+       <span style="float:right;color:#FFFFFF;"><a href="cms_edit_page.php?edit_id=<?php echo $repage['page_id'];?>"><img src="images/edit.png" width="20" height="22" /></a><span>&nbsp;  &nbsp; <span style="float:right;"><a href="javascript:void(0);" onclick="delProfile(<?php echo $country_res['country_id'];?>);"><img src="images/delete-icn.png" width="22" height="22" /></a><span> <div class="clear"></div><?php $i++; } ?></ul> </td>
       
      
      
